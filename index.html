@@ -14,9 +14,6 @@
 
 <body>
     <div class="container">
-        <div>
-            <button id="gen-page">Generate New User</button>
-        </div>
         <div class="user-container"></div>
         <div class="quote-container"></div>
         <div class="content-container">
@@ -26,6 +23,9 @@
         <div class="friends-container">
             <h4>Friends</h4>
         </div>
+        <button id="gen-page">Generate New User</button>
+        <button id="save" >Save The User</button>
+        <button id="load" >Load the saved User</button>
     </div>
 
     <!-- ------------------------------- -->
@@ -34,25 +34,36 @@
 
     <!-- ---------------------------------------------------------------------- -->
     <script id="user-template" type="text/x-handlebars-template">
-        <!-- Write Main User Handlebars template here -->
+        <img id="profile-pic"src="{{picture.medium}}">
+        <div class="user-info">
+            <p>{{#toUpperCase}} {{name.first}} {{name.last}} {{/toUpperCase}}</p>
+            <p>{{location.city}}, {{location.state}}</p>
+        </div>
     </script>
     <!-- ------------------------------------------------------------------------->
     <script id="user-friends-template" type="text/x-handlebars-template">
-        <!-- Write Friend List Handlebars template here  -->
+            <h1>friends</h1>
+            {{#each users}}
+            <p>{{#toUpperCase}} {{name.first}} {{name.last}} {{/toUpperCase}}</p><br>
+            {{/each}}
     </script>
     <!-- ---------------------------------------------------------------------- -->
     <script id="quote-template" type="text/x-handlebars-template">
-        <!-- Write Quote Handlebars template here -->
+        <h1>Favorite quote</h1>
+        <p>"{{quote}}"</p>
     </script>
     <!-- ---------------------------------------------------------------------- -->
     <script id="pokemon-template" type="text/x-handlebars-template">
-        <!-- Write Pokemon Handlebars template here -->
+            <img id="pokemon-image " src="{{image}}">
+            <p id="pokemon-text">{{name}}</p>
     </script>
     <!-- ---------------------------------------------------------------------- -->
     <script id="meat-template" type="text/x-handlebars-template">
-        <!-- Write Meat Handlebars template here -->
+            <div clss="meat-text">{{meatText}}</div>
     </script>
     <!-- ---------------------------------------------------------------------- -->
+
+    
 
     <script src="Renderer.js"></script>
     <script src="APIManager.js"></script>
