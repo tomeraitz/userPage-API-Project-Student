@@ -49,6 +49,17 @@ class Renderer {
         let newHTML = template({meatText});
         $(".meat-container").append(newHTML);
     }
+
+    renderShowAllUsers(allUsers){
+        $("#userList").empty();
+        const source = $('#user-list-template').html();
+        let template = Handlebars.compile(source);
+        Handlebars.registerHelper('toUpperCase', function(allUsers) {
+            return allUsers.fn(this).replace(/\b\w/g, l => l.toUpperCase())
+        });
+        let newHTML = template({allUsers})
+        $("#userList").append(newHTML);
+    }
 }
 
 

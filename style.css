@@ -144,12 +144,35 @@ ul{
     height: 50px;
     margin-left: 400px;
     border-radius: 6px;
-    background-color: rgb(0, 255, 213);
-    color: #ecf0f1;   
+    background-color: yellowgreen;
+    color: black;   
     bottom: 1vw;
     left: 1vw;
     grid-row: 4;
     grid-column: 1;
     font-size: 1vmax;
     cursor: pointer;
+}
+
+#userList{
+    display: none;
+    grid-row: 3;
+    align-self: end;
+    text-align: center;
+    grid-column: 1;
+    width: 200px;
+    margin-left: 400px;
+    height: fit-content;
+    background-color: #3498db;
+    color: #ecf0f1;
+    border-radius: 4px 4px 0px 0px;
+    box-shadow: 0px -1px 3px black;
+}
+
+li{
+    cursor: pointer;
+}
+
+li:hover{
+    background-color: gray
 }

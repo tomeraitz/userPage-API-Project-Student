@@ -7,7 +7,7 @@ class APIManager {
         this.pokemon = {}
         this.quote = {}
         this.meat = {}
-        this.allUsers = []
+        this.allUsers = JSON.parse(localStorage.allUsers || "[]")
     }
     getUsers() {
         $.ajax({
@@ -70,15 +70,11 @@ class APIManager {
         })
     }
 
+    getAllSavedUsers(){
+        this.render.renderShowAllUsers(this.allUsers);
+    }
+
     save(){
-        // let users = JSON.stringify(this.users)
-        // localStorage.users = users;
-        // let meat = JSON.stringify(this.meat)
-        // localStorage.meat = meat;
-        // let pokemon = JSON.stringify(this.pokemon)
-        // localStorage.pokemon = pokemon;
-        // let quote = JSON.stringify(this.quote)
-        // localStorage.quote = quote;
         this.allUsers.push({
             name : this.users.results[0].name.first + " " + this.users.results[0].name.last,
             users : this.users,
@@ -87,15 +83,16 @@ class APIManager {
             pokemon : this.pokemon
         })
         localStorage.allUsers = JSON.stringify(this.allUsers)
-        this.render.renderShowAllUsers(this.allUsers.name);
+        this.load(this.allUsers.length -1)
+        
     }
-    load(){
-        // this.render.renderFriends(JSON.parse(localStorage.users).results.slice(1, 8))
-        // this.render.renderUsers(JSON.parse(localStorage.users).results[0])
-        // this.render.renderQuote(JSON.parse(localStorage.quote))
-        // this.render.renderMeat(JSON.parse(localStorage.meat))
-        // this.render.renderPokemon(JSON.parse(localStorage.pokemon))
-        console.log(JSON.parse(localStorage.allUsers))
+    load(index){
+        this.render.renderFriends(this.allUsers[index].users.results.slice(1, 8))
+        this.render.renderUsers(this.allUsers[index].users.results[0])
+        this.render.renderQuote(this.allUsers[index].quote)
+        this.render.renderMeat(this.allUsers[index].meat)
+        this.render.renderPokemon(this.allUsers[index].pokemon)
+        this.render.renderShowAllUsers(JSON.parse(localStorage.allUsers));
     }
 
     generateNewPage() {
@@ -103,5 +100,6 @@ class APIManager {
         this.getPokemon()
         this.getQuote()
         this.getMeat()
+        this.getAllSavedUsers()
     }
 }

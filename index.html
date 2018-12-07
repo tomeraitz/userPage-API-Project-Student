@@ -26,6 +26,7 @@
         <button id="gen-page">Generate New User</button>
         <button id="save" >Save The User</button>
         <button id="load" >Load the saved User</button>
+        <div id="userList"></div>
     </div>
 
     <!-- ------------------------------- -->
@@ -62,8 +63,14 @@
             <div clss="meat-text">{{meatText}}</div>
     </script>
     <!-- ---------------------------------------------------------------------- -->
-
-    
+    <script id="user-list-template" type="text/x-handlebars-template">
+            <ul>
+                {{#each allUsers}}
+                    <li data-id="{{@index}}" class="chooseAuser">{{#toUpperCase}} {{name}}{{/toUpperCase}}</li>
+                {{/each}}
+            </ul>
+    </script>
+<!-- ---------------------------------------------------------------------- -->
 
     <script src="Renderer.js"></script>
     <script src="APIManager.js"></script>

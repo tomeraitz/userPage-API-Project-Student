@@ -1,4 +1,3 @@
-// Create instances of your classes here
 const render = new Renderer();
 const api = new APIManager(render);
 
@@ -13,10 +12,14 @@ $("#save").on("click", function(){
 })
 
 $("#load").on("click", function(){
-    api.load();
+    $("#userList").toggle();
+})
+
+$("body").on("click", ".chooseAuser", function(){
+    let index = $(this).data().id
+    api.load(index);
 })
 
 
 
-// Render your page and create an on-click to generate a new user here
 
